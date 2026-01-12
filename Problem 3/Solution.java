@@ -18,17 +18,23 @@ public class Solution {
 
 	}
 		
-	public static int removeDuplicates(int[] nums) {
-        HashMap<Integer,Boolean> temp = new HashMap();
-        int j=0;
-        for(int i=0;i<nums.length;i++) {
-        	if(temp.get(nums[i])==null) {
-        		temp.put(nums[i], true);
-        		nums[j]=nums[i];
-        		j++;
-        	}
-        }
-        return j;
-    }
+	public static int removeDuplicates(int [] nums) {
+		int j=0;
+		for (int i=0;i<nums.length;i++) {
+			int temp = 0;
+
+			for(int ii=i+1; ii<nums.length && nums[ii] == nums[i]  ;ii++) {
+				temp = ii;
+			}
+			if(temp>=i+1) {
+				nums[j++]=nums[i];
+				i = temp;
+			}
+			else {
+				nums[j++]=nums[i];
+			}
+			}
+		return j;
+	}
 
 }
