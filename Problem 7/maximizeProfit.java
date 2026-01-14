@@ -15,25 +15,23 @@ public class maximizeProfit {
 		System.out.println("The maximum profit: " + output + " .");
 
 	}
+	
 	public static int MaxProfit(int prices[]) {
-		int greatestDifference = -1;
+		int buyDay = prices[0];
+		int profit = -1;
 		for(int i=0;i<prices.length;i++) {
-			int largest = -1;
-			for(int j=i+1;j<prices.length;j++) {
-				if(prices[j] > prices[i] && prices[j] > largest) {
-					largest = prices[j];
-				}
+			if(prices[i]<buyDay) {
+				buyDay = prices[i];
+				continue;
 			}
-			if(largest !=-1) {
-				if(largest-prices[i] > greatestDifference) {
-					greatestDifference = largest-prices[i];
-				}
+			if(prices[i]-buyDay > profit) {
+				profit = prices[i] - buyDay;
 			}
 		}
-		if(greatestDifference == -1)
-			return 0;
-		else
-			return greatestDifference;
+		if(profit!=-1) {
+			return profit;
+		}
+		return 0;
 	}
 	
 
