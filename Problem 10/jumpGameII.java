@@ -20,16 +20,13 @@ public class jumpGameII {
 	public static int jump(int nums[]) {
 		int counter=0;
         for(int i=nums.length-1;i>0;){
-            int bestcaseindex=0;
-            int difference=0;
-            for(int j=i-1;j>=0;j--){
-                if(nums[j] >= (i-j)  && (i-j)>=difference){
-                    bestcaseindex=j;
-                    difference=i-j;
+            for(int j=0;j<i;j++){
+                if(nums[j] >= (i-j)){
+                    counter++;
+                    i=j;
+                    break;
                 }
             }
-            i=bestcaseindex;
-            counter++;
             
         }
         return counter;
