@@ -19,17 +19,22 @@ public class jumpGameII {
 	}
 	public static int jump(int nums[]) {
 		int counter=0;
-        for(int i=nums.length-1;i>0;){
-            for(int j=0;j<i;j++){
-                if(nums[j] >= (i-j)){
-                    counter++;
-                    i=j;
-                    break;
+        int limit=nums[0];
+        int farthest_range=nums[0];
+        for(int i=1;i<nums.length;i++){
+            if(i==limit || i == nums.length-1){
+                counter++;
+                if(farthest_range<= (i+nums[i])){
+                    farthest_range = i + nums[i];
                 }
+                limit=farthest_range;
             }
-            
+            if(farthest_range <= (i+nums[i])){
+                farthest_range = i + nums[i];
+            }
         }
         return counter;
+    }
 	}
 
-}
+
