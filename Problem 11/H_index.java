@@ -16,34 +16,25 @@ public class H_index {
 		System.out.println("The output is: "+output);
 
 	}
-	public int hIndex(int[] citations) {
+	public static int hIndex(int citations[]) {
+		int h = -1;
+        int true_h=0;
         for(int i=0;i<citations.length;i++){
-            for(int j=0;j<citations.length-i-1;j++){
-                if(citations[j]<citations[j+1]){
-                    int temp = citations[j];
-                    citations[j]=citations[j+1];
-                    citations[j+1]=temp;
+            h=i+1;
+            int temp=0;
+            for(int j=0;j<citations.length;j++){
+                if(citations[j]>=h){
+                    temp++;
+                }
+                if(temp==h){
+                    break;
                 }
             }
-        }
-    
-        int current_max=citations[0];
-        int h=0;
-        if(current_max!=0){
-            h=1;
-        }
-        for(int i=1;i<citations.length;i++){
-            if(citations[i]<current_max){
-                current_max=citations[i];
-            }
-            if(h<current_max){
-                h++;
-            }
-            else{
-                break;
+            if (temp==h){
+                true_h=h;
             }
         }
-        return h;
-    }
+        return true_h;
+	}
 
 }
